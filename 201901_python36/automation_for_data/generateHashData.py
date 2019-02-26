@@ -62,7 +62,6 @@ def alphabetGen():
     # alphabetList = ['A', 'B', 'C', 'D']
     # return random.choice(alphabetList)
     import numpy as np
-
     DICT_VAR = {'A': 500, 'B': 1000, 'C': 5000, 'D': 8000}
 
     keys, weights = zip(*DICT_VAR.items())
@@ -87,14 +86,10 @@ def hashWordGenerate2():
         hash2 = hashlib.md5(eachWord).hexdigest()
         #writeFile.write(hash2 + '\n')
         hashList.append(hash2)
-
-
     return hashList
 
 
-
 if __name__ == '__main__':
-
     #1. 기본 실행
     hashValList = hashWordGenerate2()
 
