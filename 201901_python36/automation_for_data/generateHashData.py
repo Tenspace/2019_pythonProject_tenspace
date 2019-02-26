@@ -59,8 +59,20 @@ def numberGenerate2():
     return ranNum2
 
 def alphabetGen():
-    alphabetList = ['A', 'B', 'C', 'D']
-    return random.choice(alphabetList)
+    # alphabetList = ['A', 'B', 'C', 'D']
+    # return random.choice(alphabetList)
+    import numpy as np
+
+    DICT_VAR = {'A': 500, 'B': 1000, 'C': 5000, 'D': 8000}
+
+    keys, weights = zip(*DICT_VAR.items())
+    probs = np.array(weights, dtype=float) / float(sum(weights))
+    # sample_np = np.random.choice(keys, 2, p=probs)
+    sample_np = np.random.choice(keys, 1, p=probs)
+    sample = [str(val) for val in sample_np]
+
+    #print(str(sample).replace('[', '').replace(']', ''))
+    return str(sample).replace('[\'', '').replace('\']', '')
 
 
 def hashWordGenerate2():
@@ -107,7 +119,7 @@ if __name__ == '__main__':
 
     print(insert_command)
 
-    with open('aster_7.sql', 'w') as out:
+    with open('aster_20190226_01.sql', 'w') as out:
         out.write(insert_command)
 
 
