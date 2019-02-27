@@ -8,10 +8,11 @@ def generateInserQuery(listValues):
 
     insertValueList = []
     loopCnt = 0
-    while(loopCnt != 11679):
+    while(loopCnt != 12679):
         values = "" + numberGenerate(), platformGen(), random.choice(listValues), random.choice(listValues), \
                 random.choice(listValues), random.choice(listValues), numberGenerate(), random.choice(listValues), random.choice(listValues), \
-                random.choice(listValues), random.choice(listValues), random.choice(listValues), random.choice(listValues), random.choice(listValues), random.choice(listValues),\
+                random.choice(listValues), random.choice(listValues), random.choice(listValues), random.choice(listValues), \
+                random.choice(listValues), random.choice(listValues),\
                 random.choice(listValues), random.choice(listValues), random.choice(listValues), numberGenerate2(),\
                 numberGenerate2(), numberGenerate(), numberGenerate(), numberGenerate(),\
                 numberGenerate(), numberGenerate(), numberGenerate(), '', '',\
@@ -56,7 +57,7 @@ def numberGenerate():
 def numberGenerate2():
     ranNum2 = "%0.2d" % random.randint(0, 99)
 
-    return ranNum2
+    return str(ranNum2)
 
 def alphabetGen():
     # alphabetList = ['A', 'B', 'C', 'D']
@@ -73,7 +74,6 @@ def alphabetGen():
     #print(str(sample).replace('[', '').replace(']', ''))
     return str(sample).replace('[\'', '').replace('\']', '')
 
-
 def hashWordGenerate2():
     word_site = "http://svnweb.freebsd.org/csrg/share/dict/words?view=co&content-type=text/plain"
 
@@ -86,10 +86,14 @@ def hashWordGenerate2():
         hash2 = hashlib.md5(eachWord).hexdigest()
         #writeFile.write(hash2 + '\n')
         hashList.append(hash2)
+
+
     return hashList
 
 
+
 if __name__ == '__main__':
+
     #1. 기본 실행
     hashValList = hashWordGenerate2()
 
@@ -98,7 +102,7 @@ if __name__ == '__main__':
 
     #2. 쿼리 생성 실행
     #print(generateInserQuery(hashValList))
-    insert_command = """INSERT INTO facebook_score (
+    insert_command = """INSERT INTO crawler_score (
                  origin_ph, platform, page_id, username, gender, phone_number, birthday, address1, address2, address3,
                  company1, company2, company3, university1, university2, university3, contact1, contact2,
                  expression_negative, expression_positive, friends_all, friends_residence,
@@ -109,12 +113,12 @@ if __name__ == '__main__':
                  like_cnt ,comment_cnt, share_cnt, place_cnt, place_add, post_cnt,
                  photo_of_oneself_cnt, photo_cnt, album_cnt, album_category_cnt, video_tag_oneself_cnt,
                  video_cnt, operation_year_period, friends_continuous_exchange, friends_rating_index,
-                 friends_correlation_score, contents_regular
+                 friends_correlation_score, contents_regular, tscore, cscore, mscore, user_rate
                  ) VALUES """ + generateInserQuery(hashValList)
 
     print(insert_command)
 
-    with open('aster_20190226_01.sql', 'w') as out:
+    with open('aster_9.sql', 'w') as out:
         out.write(insert_command)
 
 
