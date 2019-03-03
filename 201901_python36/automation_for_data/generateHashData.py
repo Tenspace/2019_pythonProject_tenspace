@@ -8,7 +8,7 @@ def generateInserQuery(listValues):
 
     insertValueList = []
     loopCnt = 0
-    while(loopCnt != 12679):
+    while(loopCnt != 17679):
         values = "" + numberGenerate(), platformGen(), random.choice(listValues), random.choice(listValues), \
                 random.choice(listValues), random.choice(listValues), numberGenerate(), random.choice(listValues), random.choice(listValues), \
                 random.choice(listValues), random.choice(listValues), random.choice(listValues), random.choice(listValues), \
@@ -118,7 +118,7 @@ if __name__ == '__main__':
 
     print(insert_command)
 
-    with open('aster_9.sql', 'w') as out:
+    with open('aster_10.sql', 'w') as out:
         out.write(insert_command)
 
 
